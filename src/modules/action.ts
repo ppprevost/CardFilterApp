@@ -40,7 +40,7 @@ export const fetchItem = () => async (dispatch: any) => {
         })
         dispatch({type: Types.FETCH_ITEM, payload: await list.json()})
     } catch (err) {
-        console.error('canot fetch localhtos 5000, be sure you could fetch your launch your server')
+       throw new Error('canot fetch localhtos 5000, be sure you could fetch your launch your server')
         // TODO do something with the error
     }
 }

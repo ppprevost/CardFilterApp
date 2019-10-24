@@ -25,6 +25,7 @@
   },
   "scripts": {
     "dev": "concurrently \"cd server && node index\" \"npm run start\"",
+    "lint": "tslint -t stylish --project tsconfig.json -e src/serviceWorker.ts",
     "start": "react-scripts start",
     "start:server": "cd server && node index",
     "build": "react-scripts build",
@@ -45,5 +46,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0"
   }
 }
