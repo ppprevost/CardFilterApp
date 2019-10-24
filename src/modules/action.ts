@@ -12,10 +12,6 @@ const filterTitle = (items: Item[], saveFilterSearch: string) => {
     return items.filter(item => item.name.match(regex))
 }
 
-const filterTags = (tags: string[], saveFilterSearch: string) => {
-    return tags.filter(tag => tag.match(saveFilterSearch))
-}
-
 const filterFunction = (items: Item[], saveFilterSearch: string) => {
     const regex = new RegExp(saveFilterSearch, 'i')
     const titleArrayFiltered = filterTitle(items, saveFilterSearch)

@@ -1,10 +1,9 @@
 import React, {FunctionComponent, useEffect} from 'react';
 import {connect} from 'react-redux';
-import ACTIONS, {fetchItem, filterItem} from "../modules/action";
+import {fetchItem, filterItem} from "../modules/action";
 import SearchInput from './SearchInput';
 import Card from './Card';
 import styled from 'styled-components';
-import {device} from '../device';
 import {Dispatch} from 'react'
 
 export interface Item {
@@ -39,7 +38,7 @@ export const RootComponent: FunctionComponent<{ items: Item[], fetchItemAction: 
     }
     useEffect(() => {
         fetchItemAction()
-    }, [])
+    })
     return (<>
         <SearchInput label="Que recherchez-vous ?" onChange={onInputChange} />
         <SectionStyled>

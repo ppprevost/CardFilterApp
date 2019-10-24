@@ -1,7 +1,6 @@
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 // Logger with default options
-import logger from "redux-logger";
 import reducer from "./reducer";
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
