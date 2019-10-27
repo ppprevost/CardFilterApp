@@ -8,20 +8,29 @@ export const Types = {
 };
 const urlList = 'http://localhost:5000/list'
 
-const filterTitle = (items: Item[], saveFilterSearch: string) => {
-    const regex = new RegExp(saveFilterSearch, 'i')
+const filterTitle = (items: Item[], regex: RegExp): Item[] => {
     return items.filter(item => item.name.match(regex))
 }
 
 
-const filterFunction = (items: Item[], saveFilterSearch: string) => {
-    const regex = new RegExp(saveFilterSearch, 'i')
-    const titleArrayFiltered = filterTitle(items, saveFilterSearch)
-    const tagsArrayFiltered = items
+const filterTags = (items: Item[], regex: RegExp): Item[] => {
+    return items
         .filter(item => item.tags
             .some((tag) =>
                 regex.test(tag)))
-    const filtered = [...titleArrayFiltered, ...tagsArrayFiltered]
+}
+
+const filterItemFunction = (items:Item[],regex: RegExp)=>(...funcs: ((items:Item[],regex: RegExp)=>Item[])[]): Item[] => {
+    return funcs.reduce((acc, func) => {
+        const actual = func(items, regex)
+        acc.push(...actual)
+        return acc
+    }, [] as Item[])
+}
+
+const filterFunction = (items: Item[], saveFilterSearch: string) => {
+    const regex = new RegExp(saveFilterSearch, 'i');
+    const filtered = filterItemFunction(items, regex)(filterTitle, filterTags)
     return uniqArray<Item>(filtered, '_id', ['_id', 'name', 'tags'])
 }
 
