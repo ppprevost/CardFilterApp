@@ -1,13 +1,13 @@
-export function uniqArray<P>(array: P[], propertyId: string, values: string[]): P[] {
+export function uniqArray<P extends { [key: string]: any }, K extends keyof P>(array: P[], propertyId: string, values: K[]): P[] {
     const result: P[] = [];
     const map = new Map();
     for (const item of array) {
-        if (!map.has((item as any)[propertyId])) {
-            map.set((item as any)[propertyId], true);    // set any value to Map
-            const obj: any = {};
+        if (!map.has((item)[propertyId])) {
+            map.set((item)[propertyId], true);    // set any value to Map
+            const temp: any= {};
             values
-                .map(value => (obj)[value.toString()] = (item as any)[value])
-            result.push(obj);
+                .map(value => (temp)[value.toString()] = (item)[value])
+            result.push(temp);
         }
     }
     return result;
