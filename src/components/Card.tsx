@@ -1,13 +1,19 @@
 import React, {FunctionComponent} from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 import {device} from '../device';
+
+export const fadeIn = keyframes`
+from { opacity: 0; }
+to { opacity: 1; }
+`
 
 const StyledCard = styled.article`
  width:100%;
   margin: 16px 4px;
   box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.05);
-
+  will-change: transform;
+animation:  ${fadeIn} 1s ease;
 @media ${device.tablet}{
  width:370px;
  }
