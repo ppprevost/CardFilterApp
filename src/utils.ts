@@ -1,4 +1,4 @@
-export function uniqArray<P extends { [key: string]: any }, K extends keyof P>(array: P[], propertyId: string, values: K[]): P[] {
+export function uniqArray<P extends { [key: string]: any }>(array: P[], propertyId: string, values: (keyof P)[]): P[] {
     const result: P[] = [];
     const map = new Map();
     for (const item of array) {
