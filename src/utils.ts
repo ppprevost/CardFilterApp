@@ -6,7 +6,7 @@ export function uniqArray<P extends { [key: string]: any }>(array: P[], property
             map.set((item)[propertyId], true);    // set any value to Map
             const temp: any= {};
             values
-                .map(value => (temp)[value.toString()] = (item)[value])
+                .map(value => (temp)[value] = (item)[value])
             result.push(temp);
         }
     }
