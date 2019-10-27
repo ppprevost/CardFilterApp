@@ -16,14 +16,6 @@ margin : 10px 30px 0 30px;
     
 }
 
-.input-field label {
-top:5px!important;
-}
-
-input[type=text]:not(.browser-default):focus:not([readonly]) + label{
-visibility: hidden;
-}
-
 .input-field input[type=text]:not(.browser-default):focus:not([readonly]) + label {
 
     color: #0168AB;
@@ -45,8 +37,7 @@ interface SearchInputProps {
 const SearchInput:FunctionComponent<React.InputHTMLAttributes<HTMLInputElement> & SearchInputProps> = ({label, value, ...inputProps}) => (
     <StyledInput className="SearchInput input-field">
     <i className="material-icons prefix">search</i>
-        <input id={"globalSearch"} type="text" {...inputProps} value={value} />
-{  <label htmlFor="globalSearch">{label}</label>}
+        <input placeholder="Que recherchez-vous" id={"globalSearch"} type="text" {...inputProps} value={value} />
     </StyledInput>
 );
 
