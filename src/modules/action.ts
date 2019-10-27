@@ -19,8 +19,20 @@ const filterFunction = (items: Item[], saveFilterSearch: string) => {
         .filter(item=>item.tags
             .some((tag)=>
                 regex.test(tag)))
-    const Filtered = [...titleArrayFiltered, ...tagsArrayFiltered]
-    return Filtered
+    const filtered = [...titleArrayFiltered, ...tagsArrayFiltered]
+    const result = [];
+    const map = new Map();
+    for (const item of filtered) {
+        if(!map.has(item._id)){
+            map.set(item._id, true);    // set any value to Map
+            result.push({
+                _id: item._id,
+                name: item.name,
+                tags:item.tags
+            });
+        }
+    }
+    return result
 }
 
 export const filterItem = (search: string) => (dispatch: (pay:{type:string, payload?:any})=>any, getState: ()=>{items:Item[], actualFilter:Item[]}) => {

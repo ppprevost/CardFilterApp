@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import {Dispatch} from 'react'
 
 export interface Item {
-    id: string,
+    _id: string,
     name: string,
     tags: string[]
 }
@@ -33,18 +33,20 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 export const RootComponent: FunctionComponent<{ items: Item[], fetchItemAction: () => void, filterItemAction: (search:string) => void, actualFilter: Item[] }> = ({items, fetchItemAction, filterItemAction, actualFilter}) => {
     const actualFilteredItem = actualFilter ? actualFilter : items
+    console.log(actualFilteredItem);
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         filterItemAction((evt.target.value))
     }
     useEffect(() => {
         fetchItemAction()
-    })
+    }, [])
     return (<>
         <SearchInput label="Que recherchez-vous ?" onChange={onInputChange} />
         <SectionStyled>
             {
                 actualFilter ===null || actualFilter.length ?
-                actualFilteredItem.map(({name, id, tags}) => <Card key={id} id={id}>
+                actualFilteredItem
+                    .map(({name, _id, tags}) => <Card key={_id} id={_id}>
                 <Card.Title mainTitle={name} />
                 <Card.Tags tags={tags} />
             </Card>): 'pas de résultats'}
