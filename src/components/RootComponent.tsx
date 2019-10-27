@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 export const RootComponent: FunctionComponent<{ items: Item[], fetchItemAction: () => void, filterItemAction: (search:string) => void, actualFilter: Item[] }> = ({items, fetchItemAction, filterItemAction, actualFilter}) => {
     const actualFilteredItem = actualFilter ? actualFilter : items
-    console.log(actualFilteredItem);
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         filterItemAction((evt.target.value))
     }
